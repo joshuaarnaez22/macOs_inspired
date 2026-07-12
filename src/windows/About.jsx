@@ -3,9 +3,9 @@ import { IDENTITY, ABOUT_PARAS } from '../data';
 export default function About() {
   return (
     <div style={{ background: '#fdfdfb', flex: 1, padding: '30px 36px', color: '#2a2a2a', fontSize: 14, lineHeight: 1.75, overflowY: 'auto' }}>
-      <h1 style={{ fontFamily: "'Inter', sans-serif", fontSize: 24, fontWeight: 700, color: '#1a1a1a', marginBottom: 6 }}>
+      <h2 style={{ fontFamily: "'Inter', sans-serif", fontSize: 24, fontWeight: 700, color: '#1a1a1a', marginBottom: 6 }}>
         Hey, I&apos;m Joshua. 👋
-      </h1>
+      </h2>
       <p style={{ color: '#888', fontSize: 13, marginBottom: 24 }}>Full-stack engineer who builds AI-powered products.</p>
 
       {ABOUT_PARAS.map((p, i) => (

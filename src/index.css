@@ -48,9 +48,41 @@ a, button { transition: background 0.18s ease, color 0.18s ease, opacity 0.18s e
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: rgba(150,150,160,0.35); border-radius: 5px; border: 2px solid transparent; background-clip: padding-box; }
 
-.dock-app { transition: transform 0.18s cubic-bezier(.2,.9,.3,1.4); cursor: pointer; }
-.dock-app:hover { transform: translateY(-10px) scale(1.12); }
+.dock-app { cursor: pointer; }
 .dock-app.bouncing { animation: bounce 0.35s ease-in-out 2; }
+
+/* macOS-style dock tooltip */
+.dock-tile { position: relative; }
+.dock-tooltip {
+  position: absolute;
+  bottom: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  padding: 4px 10px;
+  border-radius: 6px;
+  background: rgba(40, 36, 60, 0.85);
+  backdrop-filter: blur(12px) saturate(160%);
+  -webkit-backdrop-filter: blur(12px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: #f0f0f5;
+  font-size: 12px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.14s ease, transform 0.14s ease;
+  box-shadow: 0 8px 24px -6px rgba(0, 0, 0, 0.45);
+  z-index: 1;
+}
+.dock-tile:hover .dock-tooltip {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dock-tooltip { transition: none; }
+}
 
 .tl-group { display: flex; gap: 8px; align-items: center; }
 .tl {
@@ -67,6 +99,25 @@ a, button { transition: background 0.18s ease, color 0.18s ease, opacity 0.18s e
   transition: opacity 0.1s;
 }
 .tl-group:hover .tl-symbol { opacity: 1; }
+
+/* Contact row hover / press */
+.contact-row {
+  transition: background 0.18s ease, border-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
+}
+.contact-row:hover {
+  background: rgba(255, 255, 255, 0.1) !important;
+  border-color: rgba(125, 211, 252, 0.35) !important;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px -10px rgba(0, 0, 0, 0.45);
+}
+.contact-row:hover .contact-row-chevron {
+  color: #7dd3fc !important;
+  transform: translate(2px, -2px);
+}
+.contact-row:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
 
 /* mobile: tighten the terminal so long lines + ascii art fit a phone */
 @media (max-width: 768px) {

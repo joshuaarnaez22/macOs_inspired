@@ -59,30 +59,41 @@ export default function App() {
           className="menu-pop"
           style={{
             position: 'fixed', left: menu.x, top: menu.y, zIndex: 99998,
-            background: 'rgba(40,36,60,0.7)', backdropFilter: 'blur(20px) saturate(180%)',
+            background: 'rgba(40,36,60,0.72)', backdropFilter: 'blur(20px) saturate(180%)',
             WebkitBackdropFilter: 'blur(20px) saturate(180%)',
-            border: '1px solid rgba(255,255,255,0.16)', borderRadius: 10, padding: 6,
-            boxShadow: '0 12px 40px -8px rgba(0,0,0,0.6)', minWidth: 168,
+            border: '1px solid rgba(255,255,255,0.16)', borderRadius: 12, padding: 8,
+            boxShadow: '0 12px 40px -8px rgba(0,0,0,0.6)', minWidth: 200,
           }}
         >
-          <div style={{ color: 'rgba(255,255,255,0.5)', fontSize: 11, fontFamily: "'JetBrains Mono', monospace", padding: '4px 10px 6px' }}>Change Wallpaper</div>
-          {WALLPAPERS.map(w => (
-            <div
-              key={w.name}
-              onClick={() => { setWallpaper(w.bg); setMenu(null); }}
-              style={{
-                display: 'flex', alignItems: 'center', gap: 10, padding: '6px 10px',
-                borderRadius: 6, cursor: 'pointer', color: '#f0f0f5', fontSize: 13,
-                fontFamily: 'Inter, sans-serif',
-                background: wallpaper === w.bg ? 'rgba(120,120,255,0.35)' : 'transparent',
-              }}
-              onMouseEnter={e => { if (wallpaper !== w.bg) e.currentTarget.style.background = 'rgba(255,255,255,0.1)'; }}
-              onMouseLeave={e => { if (wallpaper !== w.bg) e.currentTarget.style.background = 'transparent'; }}
-            >
-              <span style={{ width: 18, height: 18, borderRadius: 4, background: w.bg, border: '1px solid rgba(255,255,255,0.25)', flexShrink: 0 }} />
-              {w.name}
-            </div>
-          ))}
+          <div style={{ color: 'rgba(255,255,255,0.5)', fontSize: 11, fontFamily: "'JetBrains Mono', monospace", padding: '4px 10px 8px' }}>Change Wallpaper</div>
+          {WALLPAPERS.map(w => {
+            const active = wallpaper === w.bg;
+            return (
+              <div
+                key={w.name}
+                onClick={() => { setWallpaper(w.bg); setMenu(null); }}
+                style={{
+                  display: 'flex', alignItems: 'center', gap: 12, padding: '8px 10px',
+                  borderRadius: 8, cursor: 'pointer', color: '#f0f0f5', fontSize: 13,
+                  fontFamily: 'Inter, sans-serif',
+                  background: active ? 'rgba(120,120,255,0.35)' : 'transparent',
+                }}
+                onMouseEnter={e => { if (!active) e.currentTarget.style.background = 'rgba(255,255,255,0.1)'; }}
+                onMouseLeave={e => { if (!active) e.currentTarget.style.background = 'transparent'; }}
+              >
+                <span style={{
+                  width: 28, height: 20, borderRadius: 5, background: w.bg,
+                  border: active ? '1.5px solid rgba(255,255,255,0.7)' : '1px solid rgba(255,255,255,0.25)',
+                  boxShadow: 'inset 0 0 0 0.5px rgba(0,0,0,0.25)',
+                  flexShrink: 0,
+                }} />
+                <span style={{ flex: 1 }}>{w.name}</span>
+                {active && (
+                  <span style={{ color: '#7dd3fc', fontSize: 13, fontWeight: 700 }} aria-hidden>✓</span>
+                )}
+              </div>
+            );
+          })}
         </div>
       )}
 
@@ -105,7 +116,7 @@ export default function App() {
         position: 'fixed', top: 48, right: 24, zIndex: 100,
         textAlign: 'right', pointerEvents: 'none',
       }}>
-        <p style={{ color: 'rgba(255,255,255,0.7)', fontWeight: 600, fontSize: 13, fontFamily: 'Inter, sans-serif' }}>Joshua Arnaez — Portfolio</p>
+        <h1 style={{ color: 'rgba(255,255,255,0.7)', fontWeight: 600, fontSize: 13, fontFamily: 'Inter, sans-serif', margin: 0 }}>Joshua Arnaez — Portfolio</h1>
         <p style={{ color: 'rgba(255,255,255,0.5)', fontFamily: "'JetBrains Mono', monospace", fontSize: 11, marginTop: 3 }}>double-click the dock to open apps</p>
       </div>
 

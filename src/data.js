@@ -1,3 +1,6 @@
+/** Production origin (no trailing slash). Used for absolute SEO URLs. */
+export const SITE_URL = 'https://www.joshuaarnaez.com';
+
 export const IDENTITY = {
   name: 'Joshua Arnaez',
   role: 'Full-Stack Engineer · AI Integration Specialist',
@@ -78,30 +81,30 @@ export const ABOUT_PARAS = [
 ];
 
 export const PROJECTS = [
-  // full-stack apps first
-  { mark: 'CS',  name: 'CryptoSage',   kind: 'AI · Web',     featured: true,  gradient: 'linear-gradient(150deg,#f7931a,#b8690a)', repo: 'https://github.com/joshuaarnaez22/CryptoSage' },
-  { mark: 'HM',  name: 'HealthMind',   kind: 'AI · Health',  featured: true,  gradient: 'linear-gradient(150deg,#10b981,#047857)', repo: 'https://github.com/joshuaarnaez22/healthmind-ai' },
-  { mark: 'GC',  name: 'Guild Chat',   kind: 'Real-time',    featured: true,  gradient: 'linear-gradient(150deg,#6366f1,#4338ca)', repo: 'https://github.com/joshuaarnaez22/guild-chat' },
-  { mark: 'LMS', name: 'LMS Platform', kind: 'EdTech',       featured: true,  gradient: 'linear-gradient(150deg,#0ea5e9,#0369a1)', repo: 'https://github.com/joshuaarnaez22/lms-project' },
-  { mark: 'SH',  name: 'Stream Hub',   kind: 'Streaming',                     gradient: 'linear-gradient(150deg,#ec4899,#a21caf)', repo: 'https://github.com/joshuaarnaez22/stream-hub' },
-  { mark: 'TS',  name: 'Tattoo Studio', kind: 'AI · 3D',                      gradient: 'linear-gradient(150deg,#a855f7,#6d28d9)', repo: 'https://github.com/joshuaarnaez22/tatoo-studio' },
-  { mark: 'RJ',  name: 'Jobs Scraper', kind: 'Automation',                   gradient: 'linear-gradient(150deg,#f43f5e,#be123c)', repo: 'https://github.com/joshuaarnaez22/job-scraper' },
-  // client websites last
-  { mark: 'CR',  name: 'Crowned',         kind: 'AI Website · Client', gradient: 'linear-gradient(150deg,#eab308,#a16207)', repo: 'https://github.com/joshuaarnaez22/crowned',         live: 'https://crowned-phi.vercel.app/' },
-  { mark: 'CV',  name: 'CEV',             kind: 'AI Website · Client', gradient: 'linear-gradient(150deg,#14b8a6,#0f766e)', repo: 'https://github.com/joshuaarnaez22/cev',             live: 'https://cev-six.vercel.app/' },
-  { mark: 'AA',  name: 'All Area Access', kind: 'AI Website · Client', gradient: 'linear-gradient(150deg,#f97316,#c2410c)', repo: 'https://github.com/joshuaarnaez22/all-area-access', live: 'https://all-area-access.vercel.app/' },
+  // live demos first (all featured)
+  { mark: 'HM',  name: 'HealthMind',      kind: 'AI · Health',         featured: true,  gradient: 'linear-gradient(150deg,#10b981,#047857)', repo: 'https://github.com/joshuaarnaez22/healthmind-ai',      live: 'https://healthmind-ai.vercel.app/' },
+  { mark: 'RJ',  name: 'Jobs Scraper',    kind: 'Automation',          featured: true,  gradient: 'linear-gradient(150deg,#f43f5e,#be123c)', repo: 'https://github.com/joshuaarnaez22/job-scraper',        live: 'https://job-scraper-liard-one.vercel.app/' },
+  { mark: 'CR',  name: 'Crowned',         kind: 'AI Website · Client', featured: true,  gradient: 'linear-gradient(150deg,#eab308,#a16207)', repo: 'https://github.com/joshuaarnaez22/crowned',            live: 'https://crowned-phi.vercel.app/' },
+  { mark: 'CV',  name: 'CEV',             kind: 'AI Website · Client', featured: true,  gradient: 'linear-gradient(150deg,#14b8a6,#0f766e)', repo: 'https://github.com/joshuaarnaez22/cev',                live: 'https://cev-six.vercel.app/' },
+  { mark: 'AA',  name: 'All Area Access', kind: 'AI Website · Client', featured: true,  gradient: 'linear-gradient(150deg,#f97316,#c2410c)', repo: 'https://github.com/joshuaarnaez22/all-area-access',    live: 'https://all-area-access.vercel.app/' },
+  // repo-only
+  { mark: 'CS',  name: 'CryptoSage',      kind: 'AI · Web',                             gradient: 'linear-gradient(150deg,#f7931a,#b8690a)', repo: 'https://github.com/joshuaarnaez22/CryptoSage' },
+  { mark: 'GC',  name: 'Guild Chat',      kind: 'Real-time',                            gradient: 'linear-gradient(150deg,#6366f1,#4338ca)', repo: 'https://github.com/joshuaarnaez22/guild-chat' },
+  { mark: 'LMS', name: 'LMS Platform',    kind: 'EdTech',                               gradient: 'linear-gradient(150deg,#0ea5e9,#0369a1)', repo: 'https://github.com/joshuaarnaez22/lms-project' },
+  { mark: 'SH',  name: 'Stream Hub',      kind: 'Streaming',                            gradient: 'linear-gradient(150deg,#ec4899,#a21caf)', repo: 'https://github.com/joshuaarnaez22/stream-hub' },
+  { mark: 'TS',  name: 'Tattoo Studio',   kind: 'AI · 3D',                              gradient: 'linear-gradient(150deg,#a855f7,#6d28d9)', repo: 'https://github.com/joshuaarnaez22/tatoo-studio' },
 ];
 
 export const DOCK_ITEMS = [
-  { id: 'terminal', label: 'Terminal', glyph: '>_',  glyphSize: 18, gradient: 'linear-gradient(150deg,#3a3a44,#1a1a20)', appTitle: 'Terminal' },
-  { id: 'projects', label: 'Projects', glyph: '▤',   glyphSize: 24, gradient: 'linear-gradient(150deg,#2aa9ff,#0a63d6)', appTitle: 'Finder' },
-  { id: 'about',    label: 'About Me', glyph: 'Aa',  glyphSize: 18, gradient: 'linear-gradient(150deg,#fdfdfd,#dcdce2)', appTitle: 'TextEdit' },
-  { id: 'contact',  label: 'Contact',  glyph: '✉',   glyphSize: 24, gradient: 'linear-gradient(150deg,#00e676,#00b0ff)', appTitle: 'Contact' },
+  { id: 'terminal', label: 'Terminal', gradient: 'linear-gradient(150deg,#3d3d48,#1a1a22)', appTitle: 'Terminal' },
+  { id: 'projects', label: 'Projects', gradient: 'linear-gradient(150deg,#5ac8ff,#0a6dff)', appTitle: 'Finder' },
+  { id: 'about',    label: 'About Me', gradient: 'linear-gradient(150deg,#ffffff,#d8d8e0)', appTitle: 'TextEdit' },
+  { id: 'contact',  label: 'Contact',  gradient: 'linear-gradient(150deg,#00e676,#0091ea)', appTitle: 'Contact' },
 ];
 
 export const DOCK_EXTERNALS = [
-  { label: 'GitHub', glyph: 'GH',  glyphSize: 18, gradient: 'linear-gradient(150deg,#444,#111)',       url: 'https://github.com/joshuaarnaez22' },
-  { label: 'Resume', glyph: 'PDF', glyphSize: 13, gradient: 'linear-gradient(150deg,#ff5f57,#c1271f)', url: 'https://drive.google.com/file/d/1I9TNw6n9uu4XhUvTwtRyCMBmPfRRf5PQ/view?usp=drive_link' },
+  { label: 'GitHub', gradient: 'linear-gradient(150deg,#3a3a42,#121216)', url: 'https://github.com/joshuaarnaez22' },
+  { label: 'Resume', gradient: 'linear-gradient(150deg,#ff6b63,#b01e18)', url: 'https://drive.google.com/file/d/1I9TNw6n9uu4XhUvTwtRyCMBmPfRRf5PQ/view?usp=drive_link' },
 ];
 
 export const WALLPAPERS = [
