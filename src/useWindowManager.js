@@ -50,24 +50,33 @@ export function useWindowManager() {
   useEffect(() => {
     const t = setTimeout(() => {
       localStorage.setItem(STORAGE_KEY, JSON.stringify({ wins, zTop, activeId }));
-    }, 250);
+    }, 400);
     return () => clearTimeout(t);
   }, [wins, zTop, activeId]);
 
   useEffect(() => {
     const onMove = (e) => {
       if (!dragRef.current) return;
-      const { id, sx, sy, ox, oy } = dragRef.current;
-      const MENUBAR = 30, DOCK_GUARD = 100;
-      const layerW = window.innerWidth;
-      const layerH = window.innerHeight - MENUBAR;
-      const { w, h } = WIN_DIMS[id];
-      const nx = Math.max(0, Math.min(ox + e.clientX - sx, layerW - w));
-      const ny = Math.max(0, Math.min(oy + e.clientY - sy, layerH - DOCK_GUARD - h + MENUBAR));
-      setWins(prev => ({ ...prev, [id]: { ...prev[id], x: nx, y: ny } }));
+      dragRef.current.clientX = e.clientX;
+      dragRef.current.clientY = e.clientY;
+      if (dragRef.current.raf) return;
+      dragRef.current.raf = requestAnimationFrame(() => {
+        const d = dragRef.current;
+        if (!d) return;
+        d.raf = 0;
+        const { id, sx, sy, ox, oy, clientX, clientY } = d;
+        const MENUBAR = 30, DOCK_GUARD = 100;
+        const layerW = window.innerWidth;
+        const layerH = window.innerHeight - MENUBAR;
+        const { w, h } = WIN_DIMS[id];
+        const nx = Math.max(0, Math.min(ox + clientX - sx, layerW - w));
+        const ny = Math.max(0, Math.min(oy + clientY - sy, layerH - DOCK_GUARD - h + MENUBAR));
+        setWins(prev => ({ ...prev, [id]: { ...prev[id], x: nx, y: ny } }));
+      });
     };
     const onUp = () => {
       if (!dragRef.current) return;
+      if (dragRef.current.raf) cancelAnimationFrame(dragRef.current.raf);
       dragRef.current = null;
       document.body.style.cursor = '';
     };

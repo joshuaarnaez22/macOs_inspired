@@ -6,7 +6,7 @@ export default function About() {
       <h2 style={{ fontFamily: "'Inter', sans-serif", fontSize: 24, fontWeight: 700, color: '#1a1a1a', marginBottom: 6 }}>
         Hey, I&apos;m Joshua. 👋
       </h2>
-      <p style={{ color: '#888', fontSize: 13, marginBottom: 24 }}>Full-stack engineer who builds AI-powered products.</p>
+      <p style={{ color: '#5c5c66', fontSize: 13, marginBottom: 24 }}>Full-stack engineer who builds AI-powered products.</p>
 
       {ABOUT_PARAS.map((p, i) => (
         <p key={i} style={{ marginBottom: 16, fontFamily: "'Inter', sans-serif" }} dangerouslySetInnerHTML={{ __html: p }} />
@@ -15,9 +15,9 @@ export default function About() {
       <hr style={{ border: 'none', borderTop: '1px solid #eee', margin: '24px 0' }} />
 
       <div style={{ display: 'flex', gap: 20, flexWrap: 'wrap' }}>
-        <a href={`mailto:${IDENTITY.email}`} style={linkStyle}>✉ Email</a>
-        <a href={IDENTITY.github} target="_blank" rel="noreferrer" style={linkStyle}>🐙 GitHub</a>
-        <a href={IDENTITY.linkedin} target="_blank" rel="noreferrer" style={linkStyle}>💼 LinkedIn</a>
+        <a href={`mailto:${IDENTITY.email}`} style={linkStyle}>Email</a>
+        <a href={IDENTITY.github} target="_blank" rel="noreferrer" style={linkStyle} aria-label="GitHub (opens in new tab)">GitHub</a>
+        <a href={IDENTITY.linkedin} target="_blank" rel="noreferrer" style={linkStyle} aria-label="LinkedIn (opens in new tab)">LinkedIn</a>
       </div>
     </div>
   );

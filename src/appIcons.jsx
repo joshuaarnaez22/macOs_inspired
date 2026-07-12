@@ -6,13 +6,9 @@ const base = { width: 30, height: 30, viewBox: '0 0 32 32', 'aria-hidden': true 
 export const ICONS = {
   terminal: (
     <svg {...base}>
-      <text
-        x="5" y="22"
-        fill="#39d353"
-        fontFamily="'JetBrains Mono', ui-monospace, monospace"
-        fontSize="13"
-        fontWeight="700"
-      >&gt;_</text>
+      {/* green prompt glyph without font dependency */}
+      <path d="M7 10l5 4-5 4" fill="none" stroke="#39d353" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M15 18h9" fill="none" stroke="#39d353" strokeWidth="2.4" strokeLinecap="round" />
     </svg>
   ),
 

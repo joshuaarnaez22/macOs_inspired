@@ -52,7 +52,7 @@ export default function Contact() {
       padding: '32px 30px', overflowY: 'auto',
     }}>
       {/* avatar */}
-      <div style={{
+      <div aria-hidden="true" style={{
         width: 78, height: 78, borderRadius: '50%',
         background: 'linear-gradient(140deg,#00e676,#00b0ff)',
         display: 'flex', alignItems: 'center', justifyContent: 'center',
@@ -65,7 +65,7 @@ export default function Contact() {
       <div style={{ color: '#f0f4ff', fontSize: 20, fontWeight: 700, fontFamily: "'Inter', sans-serif", marginBottom: 4 }}>
         {IDENTITY.name}
       </div>
-      <div style={{ color: '#7d8aa8', fontSize: 13, fontFamily: "'Inter', sans-serif", marginBottom: 24, textAlign: 'center' }}>
+      <div style={{ color: '#9aabcc', fontSize: 13, fontFamily: "'Inter', sans-serif", marginBottom: 24, textAlign: 'center' }}>
         Full-Stack Engineer · AI Integration Specialist
       </div>
 
@@ -76,7 +76,8 @@ export default function Contact() {
             key={row.label}
             href={row.href}
             target={row.href.startsWith('http') ? '_blank' : undefined}
-            rel="noreferrer"
+            rel={row.href.startsWith('http') ? 'noreferrer' : undefined}
+            aria-label={row.href.startsWith('http') ? `${row.label}: ${row.value} (opens in new tab)` : `${row.label}: ${row.value}`}
             className="contact-row"
             style={{
               display: 'flex', alignItems: 'center', gap: 12,
@@ -96,7 +97,7 @@ export default function Contact() {
         ))}
       </div>
 
-      <div style={{ marginTop: 24, color: '#3a4460', fontSize: 11, fontFamily: "'JetBrains Mono', monospace" }}>
+      <div style={{ marginTop: 24, color: '#8a94b0', fontSize: 11, fontFamily: "'JetBrains Mono', monospace" }}>
         {IDENTITY.location}
       </div>
     </div>

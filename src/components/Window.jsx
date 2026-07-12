@@ -4,10 +4,16 @@ export default function Window({ id, title, titleBarStyle, titleColor = '#9a9aa6
     { color: '#febc2e', symbol: '−', label: 'Minimize', action: onMinimize },
     { color: '#28c840', symbol: '+', label: 'Maximize', action: onMaximize },
   ];
+  const titleId = `win-title-${id}`;
 
   return (
-    <div style={style} onMouseDown={onFocus}>
-      {/* title bar */}
+    <div
+      role="dialog"
+      aria-labelledby={titleId}
+      aria-modal="false"
+      style={style}
+      onMouseDown={onFocus}
+    >
       <div
         onMouseDown={startDrag}
         style={{
@@ -21,25 +27,28 @@ export default function Window({ id, title, titleBarStyle, titleColor = '#9a9aa6
           {lights.map(({ color, symbol, label, action }) => (
             <button
               key={symbol}
+              type="button"
               className="tl"
               aria-label={label}
               title={label}
               style={{ background: isActive ? color : '#4d4d4d' }}
               onClick={e => { e.stopPropagation(); action(); }}
             >
-              <span className="tl-symbol">{symbol}</span>
+              <span className="tl-symbol" aria-hidden="true">{symbol}</span>
             </button>
           ))}
         </div>
-        <span style={{
-          position: 'absolute', left: '50%', transform: 'translateX(-50%)',
-          fontFamily: "'JetBrains Mono', monospace", fontSize: 13, color: titleColor,
-          fontWeight: 500, whiteSpace: 'nowrap',
-        }}>
+        <span
+          id={titleId}
+          style={{
+            position: 'absolute', left: '50%', transform: 'translateX(-50%)',
+            fontFamily: "'JetBrains Mono', monospace", fontSize: 13, color: titleColor,
+            fontWeight: 500, whiteSpace: 'nowrap',
+          }}
+        >
           {title}
         </span>
       </div>
-      {/* body */}
       <div style={{ flex: 1, overflow: 'auto', display: 'flex', flexDirection: 'column' }}>
         {children}
       </div>

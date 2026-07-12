@@ -4,8 +4,8 @@ import { IDENTITY, JOBS, SKILLS, EDUCATION, PROJECTS } from '../data';
 const MONO = "'JetBrains Mono', monospace";
 const G = '#00e676';
 const B = '#40c4ff';
-const DIM = '#555';
-const TEXT = '#b4b4c2';
+const DIM = '#8a8a96';
+const TEXT = '#c4c4d0';
 
 /* ── static sub-components ───────────────────────── */
 
@@ -14,7 +14,7 @@ const Prompt = ({ cmd }) => (
     <span style={{ color: '#69ff47' }}>joshua@portfolio</span>
     <span style={{ color: DIM }}>:</span>
     <span style={{ color: B }}>~</span>
-    <span style={{ color: '#777' }}> $ </span>
+    <span style={{ color: '#9a9aa8' }}> $ </span>
     <span style={{ color: '#f0f0f5' }}>{cmd}</span>
   </div>
 );
@@ -54,7 +54,7 @@ const HelpOut = () => {
       {cmds.map(([c, d]) => (
         <div key={c} style={{ display: 'flex', gap: 10, lineHeight: 1.8, flexWrap: 'wrap' }}>
           <span style={{ color: B, minWidth: 130, fontWeight: 600 }}>{c}</span>
-          <span style={{ color: '#777', minWidth: 0 }}>— {d}</span>
+          <span style={{ color: '#9a9aa8', minWidth: 0 }}>— {d}</span>
         </div>
       ))}
     </div>
@@ -130,7 +130,7 @@ const EducationOut = () => (
         <span style={{ color: DIM }}> — {e.school}</span>
       </div>
     ))}
-    <div style={{ color: '#777', fontSize: 12, marginTop: 4 }}>[LANGUAGES] English (Professional) · Filipino (Native)</div>
+    <div style={{ color: '#9a9aa8', fontSize: 12, marginTop: 4 }}>[LANGUAGES] English (Professional) · Filipino (Native)</div>
   </div>
 );
 
@@ -141,7 +141,7 @@ const ProjectsOut = () => (
         <span style={{ color: B, minWidth: 40, fontWeight: 700 }}>{p.mark}</span>
         <span style={{ color: '#ddd' }}>{p.name}</span>
         <span style={{ color: DIM, fontSize: 11 }}>{p.kind}</span>
-        <a href={p.repo} target="_blank" rel="noreferrer" style={{ color: '#777', fontSize: 11, textDecoration: 'none', marginLeft: 'auto' }}>→ GitHub</a>
+        <a href={p.repo} target="_blank" rel="noreferrer" style={{ color: '#9a9aa8', fontSize: 11, textDecoration: 'none', marginLeft: 'auto' }}>→ GitHub</a>
       </div>
     ))}
   </div>
@@ -340,7 +340,7 @@ function StaticContent({ openApp }) {
             <span style={{ color: DIM }}> — {e.school}</span>
           </div>
         ))}
-        <div style={{ color: '#777', fontSize: 12, marginTop: 6 }}>[LANGUAGES] English (Professional) · Filipino (Native)</div>
+        <div style={{ color: '#9a9aa8', fontSize: 12, marginTop: 6 }}>[LANGUAGES] English (Professional) · Filipino (Native)</div>
       </div>
 
       <Prompt cmd='open ~/projects && open contact.app' />
@@ -421,7 +421,7 @@ export default function Terminal({ open: openApp }) {
             <span style={{ color: '#69ff47' }}>joshua@portfolio</span>
             <span style={{ color: DIM }}>:</span>
             <span style={{ color: B }}>~</span>
-            <span style={{ color: '#777' }}> $ </span>
+            <span style={{ color: '#9a9aa8' }}> $ </span>
             <span style={{ color: '#f0f0f5' }}>{entry.cmd}</span>
           </div>
           {entry.output != null && (
@@ -439,7 +439,7 @@ export default function Terminal({ open: openApp }) {
         <span style={{ color: '#69ff47', whiteSpace: 'nowrap' }}>joshua@portfolio</span>
         <span style={{ color: DIM }}>:</span>
         <span style={{ color: B }}>~</span>
-        <span style={{ color: '#777' }}>&nbsp;$&nbsp;</span>
+        <span style={{ color: '#9a9aa8' }}>&nbsp;$&nbsp;</span>
         <input
           ref={inputRef}
           value={input}
@@ -449,6 +449,8 @@ export default function Terminal({ open: openApp }) {
           spellCheck={false}
           autoComplete="off"
           autoCorrect="off"
+          aria-label="Terminal command"
+          className="term-input"
           style={{
             flex: 1, background: 'transparent', border: 'none', outline: 'none',
             color: '#f0f0f5', fontFamily: MONO, fontSize: 13, caretColor: G,

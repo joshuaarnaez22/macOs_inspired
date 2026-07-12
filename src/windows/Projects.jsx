@@ -61,44 +61,52 @@ export default function Projects() {
       {/* sidebar — width animates so collapse/expand is smooth */}
       <div style={{ width: sideOpen ? 150 : 0, flexShrink: 0, overflow: 'hidden', transition: 'width 0.26s cubic-bezier(0.22,1,0.36,1)' }}>
       <div style={{ width: 150, height: '100%', background: 'rgba(0,0,0,0.25)', borderRight: '1px solid #14141a', padding: '16px 0' }}>
-        <div style={{ color: '#555', fontSize: 10, fontWeight: 700, padding: '0 14px', marginBottom: 6, textTransform: 'uppercase', letterSpacing: 1 }}>Favorites</div>
+        <div style={{ color: '#9a9aa8', fontSize: 10, fontWeight: 700, padding: '0 14px', marginBottom: 6, textTransform: 'uppercase', letterSpacing: 1 }}>Favorites</div>
         {VIEWS.map(v => {
           const active = sel === `view:${v.id}`;
           return (
-            <div key={v.id}
+            <button
+              key={v.id}
+              type="button"
+              aria-pressed={active}
               onClick={() => pick(`view:${v.id}`)}
               style={{
                 padding: '6px 14px', fontSize: 12.5, cursor: 'pointer',
-                color: active ? '#40c4ff' : '#aaa',
+                color: active ? '#40c4ff' : '#c8c8d0',
                 background: active ? 'rgba(64,196,255,0.18)' : 'transparent',
                 display: 'flex', alignItems: 'center', gap: 8,
+                border: 'none', width: '100%', textAlign: 'left', fontFamily: 'inherit',
               }}
               onMouseEnter={e => { if (!active) e.currentTarget.style.background = 'rgba(255,255,255,0.06)'; }}
               onMouseLeave={e => { if (!active) e.currentTarget.style.background = 'transparent'; }}
             >
               {VIEW_ICONS[v.id]}
               {v.label}
-            </div>
+            </button>
           );
         })}
-        <div style={{ color: '#555', fontSize: 10, fontWeight: 700, padding: '12px 14px 6px', textTransform: 'uppercase', letterSpacing: 1 }}>Tags</div>
+        <div style={{ color: '#9a9aa8', fontSize: 10, fontWeight: 700, padding: '12px 14px 6px', textTransform: 'uppercase', letterSpacing: 1 }}>Tags</div>
         {TAGS.map(t => {
           const active = sel === `tag:${t}`;
           return (
-            <div key={t}
+            <button
+              key={t}
+              type="button"
+              aria-pressed={active}
               onClick={() => pick(active ? 'view:github' : `tag:${t}`)}
               style={{
                 padding: '6px 14px', fontSize: 12, cursor: 'pointer',
-                color: active ? '#40c4ff' : '#888',
+                color: active ? '#40c4ff' : '#b0b0ba',
                 background: active ? 'rgba(64,196,255,0.14)' : 'transparent',
                 display: 'flex', alignItems: 'center', gap: 8,
+                border: 'none', width: '100%', textAlign: 'left', fontFamily: 'inherit',
               }}
               onMouseEnter={e => { if (!active) e.currentTarget.style.background = 'rgba(255,255,255,0.06)'; }}
               onMouseLeave={e => { if (!active) e.currentTarget.style.background = 'transparent'; }}
             >
               <TagIcon />
               {t}
-            </div>
+            </button>
           );
         })}
       </div>
@@ -112,22 +120,25 @@ export default function Projects() {
           padding: '12px 16px', background: '#1f1f27', borderBottom: '1px solid #14141a',
         }}>
           <button
+            type="button"
             onClick={() => setSideOpen(o => !o)}
+            aria-label={sideOpen ? 'Hide sidebar' : 'Show sidebar'}
+            aria-expanded={sideOpen}
             title={sideOpen ? 'Hide sidebar' : 'Show sidebar'}
             style={{
               background: 'rgba(255,255,255,0.06)', border: '1px solid #2a2a38', borderRadius: 6,
-              color: '#aaa', width: 30, height: 26, cursor: 'pointer', fontSize: 14, flexShrink: 0,
+              color: '#c8c8d0', width: 30, height: 26, cursor: 'pointer', fontSize: 14, flexShrink: 0,
             }}
           >
-            ☰
+            <span aria-hidden="true">☰</span>
           </button>
           <span style={{ color: '#e8e8ee', fontSize: 12.5, fontFamily: "'JetBrains Mono', monospace" }}>{selLabel}</span>
-          <span style={{ color: '#555', fontSize: 11.5, marginLeft: 'auto', fontFamily: "'JetBrains Mono', monospace" }}>{list.length} {list.length === 1 ? 'item' : 'items'}</span>
+          <span style={{ color: '#9a9aa8', fontSize: 11.5, marginLeft: 'auto', fontFamily: "'JetBrains Mono', monospace" }}>{list.length} {list.length === 1 ? 'item' : 'items'}</span>
         </div>
 
         <div style={{ padding: '20px 18px' }}>
         {list.length === 0 ? (
-          <div style={{ color: '#666', fontSize: 12.5, textAlign: 'center', marginTop: 40, fontFamily: "'JetBrains Mono', monospace" }}>
+          <div style={{ color: '#9a9aa8', fontSize: 12.5, textAlign: 'center', marginTop: 40, fontFamily: "'JetBrains Mono', monospace" }}>
             No projects match this filter.
           </div>
         ) : (
@@ -167,14 +178,14 @@ export default function Projects() {
                     </div>
                     <div style={{ textAlign: 'center' }}>
                       <div style={{ color: '#e8e8ee', fontSize: 11.5, fontWeight: 600, lineHeight: 1.3 }}>{p.name}</div>
-                      <div style={{ color: '#777', fontSize: 9.5, marginTop: 2 }}>{p.kind}</div>
+                      <div style={{ color: '#a8a8b4', fontSize: 9.5, marginTop: 2 }}>{p.kind}</div>
                     </div>
                   </div>
                 </a>
                 {/* both links always reachable */}
                 <div style={{ display: 'flex', gap: 8, fontSize: 9.5, fontFamily: "'JetBrains Mono', monospace", marginTop: 1 }}>
-                  <a href={p.repo} target="_blank" rel="noreferrer" style={{ color: '#888', textDecoration: 'none' }}>code</a>
-                  {p.live && <a href={p.live} target="_blank" rel="noreferrer" style={{ color: '#28c840', textDecoration: 'none' }}>live ↗</a>}
+                  <a href={p.repo} target="_blank" rel="noreferrer" style={{ color: '#a8a8b4', textDecoration: 'none' }} aria-label={`${p.name} source code (opens in new tab)`}>code</a>
+                  {p.live && <a href={p.live} target="_blank" rel="noreferrer" style={{ color: '#28c840', textDecoration: 'none' }} aria-label={`${p.name} live site (opens in new tab)`}>live ↗</a>}
                 </div>
               </div>
             ))}

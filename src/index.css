@@ -19,6 +19,27 @@
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html, body, #root { height: 100%; overflow: hidden; font-family: 'Inter', sans-serif; }
 
+/* skip link — visible on keyboard focus only */
+.skip-link {
+  position: absolute; left: 12px; top: 12px; z-index: 100000;
+  padding: 8px 14px; border-radius: 8px;
+  background: #1a1a28; color: #fff; font-size: 13px; font-weight: 600;
+  text-decoration: none; transform: translateY(-120%);
+  transition: transform 0.15s ease;
+}
+.skip-link:focus { transform: translateY(0); outline: 2px solid #7dd3fc; outline-offset: 2px; }
+
+/* visible keyboard focus for interactive controls */
+:focus { outline: none; }
+:focus-visible {
+  outline: 2px solid #7dd3fc;
+  outline-offset: 2px;
+}
+button:focus-visible, a:focus-visible, [role="button"]:focus-visible, [role="menuitem"]:focus-visible {
+  outline: 2px solid #7dd3fc;
+  outline-offset: 2px;
+}
+
 /* default easing for interactive elements (inline transitions still win where set) */
 a, button { transition: background 0.18s ease, color 0.18s ease, opacity 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease; }
 
@@ -39,7 +60,10 @@ a, button { transition: background 0.18s ease, color 0.18s ease, opacity 0.18s e
 }
 
 @keyframes blink  { 0%,49%{opacity:1} 50%,100%{opacity:0} }
-@keyframes bounce { 0%,100%{transform:translateY(0) scale(1.12)} 50%{transform:translateY(-12px) scale(1.12)} }
+@keyframes bounce {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-14px) scale(1.08); }
+}
 @keyframes popIn  { from{opacity:0;transform:scale(0.84) translateY(10px)} to{opacity:1;transform:scale(1) translateY(0)} }
 @keyframes popOut { from{opacity:1;transform:scale(1)}                     to{opacity:0;transform:scale(0.84) translateY(6px)} }
 @keyframes minOut { from{opacity:1;transform:scale(1)} to{opacity:0;transform:scale(0.45) translateY(80px)} }
@@ -49,20 +73,23 @@ a, button { transition: background 0.18s ease, color 0.18s ease, opacity 0.18s e
 ::-webkit-scrollbar-thumb { background: rgba(150,150,160,0.35); border-radius: 5px; border: 2px solid transparent; background-clip: padding-box; }
 
 .dock-app { cursor: pointer; }
-.dock-app.bouncing { animation: bounce 0.35s ease-in-out 2; }
+.dock-app.bouncing {
+  animation: bounce 0.4s ease-in-out 2;
+  transform-origin: bottom center;
+}
+
+.dock { overflow: visible; }
 
 /* macOS-style dock tooltip */
-.dock-tile { position: relative; }
+.dock-tile { position: relative; overflow: visible; }
 .dock-tooltip {
   position: absolute;
-  bottom: calc(100% + 10px);
+  bottom: calc(100% + 8px);
   left: 50%;
   transform: translateX(-50%) translateY(4px);
   padding: 4px 10px;
   border-radius: 6px;
-  background: rgba(40, 36, 60, 0.85);
-  backdrop-filter: blur(12px) saturate(160%);
-  -webkit-backdrop-filter: blur(12px) saturate(160%);
+  background: rgba(36, 32, 52, 0.96);
   border: 1px solid rgba(255, 255, 255, 0.16);
   color: #f0f0f5;
   font-size: 12px;
@@ -73,7 +100,7 @@ a, button { transition: background 0.18s ease, color 0.18s ease, opacity 0.18s e
   opacity: 0;
   transition: opacity 0.14s ease, transform 0.14s ease;
   box-shadow: 0 8px 24px -6px rgba(0, 0, 0, 0.45);
-  z-index: 1;
+  z-index: 2;
 }
 .dock-tile:hover .dock-tooltip {
   opacity: 1;
@@ -100,7 +127,11 @@ a, button { transition: background 0.18s ease, color 0.18s ease, opacity 0.18s e
 }
 .tl-group:hover .tl-symbol { opacity: 1; }
 
-/* Contact row hover / press */
+.term-input:focus-visible {
+  outline: 2px solid #7dd3fc;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
 .contact-row {
   transition: background 0.18s ease, border-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
 }
